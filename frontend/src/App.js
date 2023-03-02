@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
+import axios from "axios";
 
-function App() {
+const App = () => {
+  const [tasks, setTasks] = React.useState([])
+
+  const handleClick = () => {
+    axios
+      .get("http://localhost:5000/api/v1/tasks")
+      .then(res => setTasks(JSON.parse(res.data.tasks)))
+      .catch(err => alert(err));
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div class="container">
+      <div>
+        <h1 class="title">
+          ecs-deploy
+        </h1>
+        <h2 class="subtitle">
+          Let's ecs deploy
+        </h2>
+        <button onClick={handleClick}>
+          タスク取得
+        </button>
+        <ul>
+          {tasks.map((task, index)=> (
+            <li key={index}>{task.title}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
