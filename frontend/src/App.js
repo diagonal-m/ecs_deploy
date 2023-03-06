@@ -26,7 +26,7 @@ const App = () => {
         </button>
         <ul>
           {tasks.map((task, index)=> (
-            <li key={index}>{task.title}</li>
+            <li key={index} style={{ textAlign: "left" }}>{task.title}</li>
           ))}
         </ul>
       </div>
