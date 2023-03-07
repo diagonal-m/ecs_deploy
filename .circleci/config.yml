@@ -73,7 +73,3 @@ workflows:
           filters:
             branches:
               ignore: main
-      - test_frontend:
-          filters:
-            branches:
-              ignore: main
